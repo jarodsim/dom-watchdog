@@ -1,0 +1,35 @@
+{
+  "name": "dom-watchdog",
+  "version": "1.0.0",
+  "description": "Observe mudanças no DOM com callbacks simples.",
+  "keywords": [
+    "dom",
+    "mutationobserver",
+    "watch",
+    "frontend",
+    "typescript",
+    "react"
+  ],
+  "author": {
+    "email": "jarodsim@gmail.com",
+    "name": "Jarod Cavalcante",
+    "url": "https://jarod.dev"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
