@@ -25,7 +25,7 @@ onChange: el => console.log("Alterado:", el),
 stop();
 ```
 
-### Exemplo prático com React + TypeScript
+### Exemplo React e TypeScript
 ```ts
 import React, { useEffect } from "react";
 import { watch } from "dom-watchdog";
