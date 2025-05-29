@@ -42,7 +42,7 @@ export function ChatWatcher() {
   return <div id="chat"></div>;
 }
 ```
-## ⚙️ API
+## API
 
     watch(selector: string, options: WatchOptions): () => void
 

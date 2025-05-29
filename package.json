@@ -15,6 +15,10 @@
     "name": "Jarod Cavalcante",
     "url": "https://jarod.dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarodsim/dom-watchdog.git"
+  },
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
