@@ -42,10 +42,6 @@ export function ChatWatcher() {
   return <div id="chat"></div>;
 }
 ```
-Aqui está a seção `## API` atualizada do README com as novas props e comportamentos:
-
----
-
 ## API
 
 ```ts
