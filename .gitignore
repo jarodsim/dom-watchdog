@@ -4,3 +4,4 @@ dist/
 *.tsbuildinfo
 .vscode/
 npm-debug.log*
+coverage/

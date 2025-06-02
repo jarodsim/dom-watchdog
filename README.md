@@ -42,15 +42,37 @@ export function ChatWatcher() {
   return <div id="chat"></div>;
 }
 ```
+Aqui está a seção `## API` atualizada do README com as novas props e comportamentos:
+
+---
+
 ## API
 
-    watch(selector: string, options: WatchOptions): () => void
+```ts
+watch(selector: string, options: WatchOptions, observerOptions?: MutationObserverInit): () => void
+```
+### Parâmetros
 
-`selector`: String com o CSS do elemento pai a ser observado no DOM.
-`options`: Objeto com callbacks opcionais:
-`onAdd(el: Element)`: chamado quando um elemento filho for adicionado.
-`onRemove(el: Element)`: chamado quando um elemento filho for removido.
-`onChange(el: Element)`: chamado quando atributos do elemento observado forem modificados.
+* **`selector`**: `string`
+  Seletor CSS do elemento pai que será observado.
+
+* **`options`**: `WatchOptions`
+  Objeto com callbacks opcionais:
+
+  * **`onAdd(el: Element)`**: Chamado quando um novo elemento filho for adicionado.
+  * **`onRemove(el: Element)`**: Chamado quando um elemento filho for removido.
+  * **`onChange(el: Element)`**: Chamado quando:
+
+    * um atributo do elemento for modificado,
+    * ou o conteúdo textual (textContent) de um nó for alterado.
+
+* **`observerOptions`**: [`MutationObserverInit`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit) *(opcional)*
+  Permite configurar o comportamento do `MutationObserver` diretamente.
+  Por padrão as opções  childList, attributes e subtree são **true**. Para mudar isso sobrescreva usando o **observerOptions**.
+
+#### Retorno
+
+* Uma função que, ao ser chamada, **desconecta** o observador (`MutationObserver`) e para de escutar mudanças.
 
 ## Como funciona
 

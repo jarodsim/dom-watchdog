@@ -4,7 +4,11 @@ type WatchOptions = {
   onChange?: (el: Element) => void;
 };
 
-export function watch(selector: string, options: WatchOptions): () => void {
+export function watch(
+  selector: string,
+  options: WatchOptions,
+  observerOptions?: MutationObserverInit
+): () => void {
   const target = document.querySelector(selector);
   if (!target) throw new Error(`Element ${selector} not found`);
 
@@ -23,6 +27,13 @@ export function watch(selector: string, options: WatchOptions): () => void {
       if (mutation.type === 'attributes' && options.onChange) {
         options.onChange(mutation.target as Element);
       }
+
+      if (mutation.type === 'characterData' && options.onChange) {
+        const parentElement = mutation.target.parentElement;
+        if (parentElement) {
+          options.onChange(parentElement);
+        }
+      }
     }
   });
 
@@ -30,6 +41,7 @@ export function watch(selector: string, options: WatchOptions): () => void {
     childList: true,
     attributes: true,
     subtree: true,
+    ...observerOptions,
   });
 
   return () => observer.disconnect();
