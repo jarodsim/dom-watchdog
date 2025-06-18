@@ -1,31 +1,31 @@
-
 # dom-watchdog
 
-Observe mudanças em um elemento do DOM com callbacks simples.
-![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+Observe changes in a DOM element with simple callbacks.  
+![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)  
 ![DefinitelyTyped](https://img.shields.io/badge/types-included-brightgreen)
 
-
-## Instalação
+## Installation
 ```bash
 npm install dom-watchdog
-```
+````
 
-## Uso
+## Usage
+
 ```ts
-import { watch } from  "dom-watchdog";
+import { watch } from "dom-watchdog";
 
 const stop = watch("#root", {
-onAdd: el => console.log("Adicionado:", el),
-onRemove: el => console.log("Removido:", el),
-onChange: el => console.log("Alterado:", el),
+  onAdd: el => console.log("Added:", el),
+  onRemove: el => console.log("Removed:", el),
+  onChange: el => console.log("Changed:", el),
 });
 
-// Para parar:
+// To stop:
 stop();
 ```
 
-### Exemplo React e TypeScript
+### React and TypeScript Example
+
 ```ts
 import React, { useEffect } from "react";
 import { watch } from "dom-watchdog";
@@ -33,7 +33,7 @@ import { watch } from "dom-watchdog";
 export function ChatWatcher() {
   useEffect(() => {
     const stop = watch("#chat", {
-      onAdd: el => console.log("Nova mensagem:", el.textContent),
+      onAdd: el => console.log("New message:", el.textContent),
     });
 
     return () => stop();
@@ -42,52 +42,58 @@ export function ChatWatcher() {
   return <div id="chat"></div>;
 }
 ```
+
 ## API
 
 ```ts
 watch(selector: string, options: WatchOptions, observerOptions?: MutationObserverInit): () => void
 ```
-### Parâmetros
+
+### Parameters
 
 * **`selector`**: `string`
-  Seletor CSS do elemento pai que será observado.
+  CSS selector of the parent element to be observed.
 
 * **`options`**: `WatchOptions`
-  Objeto com callbacks opcionais:
+  Object containing optional callbacks:
 
-  * **`onAdd(el: Element)`**: Chamado quando um novo elemento filho for adicionado.
-  * **`onRemove(el: Element)`**: Chamado quando um elemento filho for removido.
-  * **`onChange(el: Element)`**: Chamado quando:
+  * **`onAdd(el: Element)`**: Called when a new child element is added.
+  * **`onRemove(el: Element)`**: Called when a child element is removed.
+  * **`onChange(el: Element)`**: Called when:
 
-    * um atributo do elemento for modificado,
-    * ou o conteúdo textual (textContent) de um nó for alterado.
+    * an element's attribute is modified,
+    * or a node’s text content is changed.
 
-* **`observerOptions`**: [`MutationObserverInit`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit) *(opcional)*
-  Permite configurar o comportamento do `MutationObserver` diretamente.
-  Por padrão as opções  childList, attributes e subtree são **true**. Para mudar isso sobrescreva usando o **observerOptions**.
+* **`observerOptions`**: [`MutationObserverInit`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserverInit) *(optional)*
+  Allows direct configuration of the `MutationObserver` behavior.
+  By default, the options `childList`, `attributes`, and `subtree` are set to **true**. To change this, override them using **observerOptions**.
 
-#### Retorno
+#### Return Value
 
-* Uma função que, ao ser chamada, **desconecta** o observador (`MutationObserver`) e para de escutar mudanças.
+* A function that, when called, **disconnects** the observer (`MutationObserver`) and stops listening for changes.
 
-## Como funciona
+## How it works
 
-O **dom-watchdog** usa a API nativa do navegador [`MutationObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) para detectar mudanças no DOM.
+**dom-watchdog** uses the native browser API [`MutationObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to detect changes in the DOM.
 
-A mesma  API permite monitorar:
--   Adição ou remoção de elementos
--   Mudanças em atributos dos elementos
--   Mudanças no conteúdo de texto
+This API allows monitoring:
 
-----------
-## Compatibilidade com navegadores
+* Addition or removal of elements
+* Changes in element attributes
+* Changes in text content
 
-`MutationObserver` é suportado pela maioria (+96%) dos navegadores modernos:
+---
+
+## Browser Compatibility
+
+`MutationObserver` is supported by most modern browsers (+96%):
 [Can I use - MutationObserver](https://caniuse.com/mutationobserver)
 
-## Licença
-MIT © Jarod Cavalcante  
+## License
+
+MIT © Jarod Cavalcante
 [https://jarod.dev](https://jarod.dev)
 
-## Contato
-jarodsim@gmail.com
+## Contact
+
+[jarodsim@gmail.com](mailto:jarodsim@gmail.com)
